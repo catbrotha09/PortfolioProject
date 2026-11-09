@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ✏️ Paso 1: pon tu nombre en el título de la pestaña -->
+    <title>Tu Nombre | Portafolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+
+  <body>
+
+    <!-- ============ MENÚ ============ -->
+    <header class="navbar">
+      <!-- ✏️ Paso 2: tu nombre o alias -->
+      <a class="logo" href="#inicio">"Yo"</a>
+      <nav>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#habilidades">Habilidades y proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ============ INICIO ============ -->
+      <section class="hero" id="inicio">
+        <div>
+          <p>Hola, me presento, soy...</p>
+          <!-- ✏️ Paso 3: tu nombre y lo que haces -->
+          <h1>César Campos</h1>
+          <p class="role">Estudiante de Python</p>
+          <a class="btn" href="#habilidades">Ver mis habilidades</a>
+        </div>
+        <!-- ✏️ Paso 4: cambia profile.png por tu foto (carpeta static/img) -->
+        <img class="avatar" src="{{ url_for('static', filename='img/profile.png') }}" alt="Mi foto" />
+      </section>
+
+      <!-- ============ SOBRE MÍ ============ -->
+      <section id="sobre-mi">
+        <h2>Sobre mí</h2>
+        <!-- ✏️ Paso 5: cuéntanos quién eres, qué te gusta, qué quieres aprender -->
+        <p>
+          Soy estudiante de programación con grandes ambiciones y una de las herramientas que más uso y más me gusta usar para crear cosas es Python, 
+          sin mencionar que me puedo adaptar a cualquier tipo de codigo similar.
+          Cuando no estoy programando me gusta jugar videojuegos, escuchar musica y dibujar. Con dichas habilidades también he podido demostrar experiencia en
+          el desarrollo de videojuegos.
+        </p>
+      </section>
+
+      <!-- ============ HABILIDADES ============ -->
+      <section id="habilidades">
+        <h2>Mis trabajos</h2>
+
+        <!-- Este formulario envía a Flask (main.py) la habilidad que elegiste -->
+        <form action="/#proyecto" method="POST">
+          <div class="cards">
+
+            <!-- ✏️ Paso 6: cada .card es una habilidad. Copia y pega para agregar más.
+                 El "value" del botón es lo que recibe Python en skill_selected. -->
+            <div class="card">
+              <img src="{{ url_for('static', filename='img/python.png') }}" alt="Diario" />
+              <h3>Diario</h3>
+              <p>Programación y automatización</p>
+              <button class="btn" type="submit" name="skill_selected" value="python">Ver proyecto</button>
+            </div>
+
+            <div class="card">
+              <img src="{{ url_for('static', filename='img/html.png') }}" alt="Generador de memes" />
+              <h3>Generador de memes</h3>
+              <p>Páginas web</p>
+              <button class="btn" type="submit" name="skill_selected" value="html">Ver proyecto</button>
+            </div>
+
+            <div class="card">
+              <img src="{{ url_for('static', filename='img/db.png') }}" alt="Discord Bot" />
+              <h3>Bot de Discord</h3>
+              <p>Bases de datos</p>
+              <button class="btn" type="submit" name="skill_selected" value="db">Ver proyecto</button>
+            </div>
+
+          </div>
+        </form>
+
+        <!-- Jinja: este bloque solo aparece cuando Python manda skill_selected -->
+        {% if skill_selected == 'python' %}
+        <div class="project" id="proyecto">
+          <h3>Proyecto de Python</h3>
+          <!-- ✏️ Paso 7: describe tu proyecto y pon tu captura -->
+          <img src="{{ url_for('static', filename='img/python-project.png') }}" alt="Captura del proyecto" />
+          <p>Aquí explico qué hace mi proyecto de Python.</p>
+          <a class="btn" href="https://github.com/catbrotha09?tab=repositories">Ver en GitHub</a>
+        </div>
+        {% endif %}
+
+        {% if skill_selected == 'html' %}
+        <div class="project" id="proyecto">
+          <h3>Proyecto de HTML</h3>
+          <!-- ✏️ Paso 7: describe tu proyecto y pon tu captura -->
+          <img src="{{ url_for('static', filename='img/python-project2.png') }}" alt="Captura del proyecto" />
+          <p>Aquí explico qué hace mi proyecto de HTML.</p>
+          <a class="btn" href="https://github.com/catbrotha09?tab=repositories">Ver en GitHub</a>
+        </div>
+        {% endif %}
+        
+        {% if skill_selected == 'db' %}
+        <div class="project" id="proyecto">
+          <h3>Proyecto de Base de Datos</h3>
+          <!-- ✏️ Paso 7: describe tu proyecto y pon tu captura -->
+          <img src="{{ url_for('static', filename='img/python-project3.gif') }}" alt="Captura del proyecto" />
+          <p>Aquí explico qué hace mi proyecto de Base de Datos.</p>
+          <a class="btn" href="https://github.com/catbrotha09?tab=repositories">Ver en GitHub</a>
+        </div>
+        {% endif %}
+
+
+
+
+      </section>
+
+      <!-- ============ CONTACTO ============ -->
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <!-- ✏️ Paso 8: tus datos reales -->
+        <p>Escríbeme a <a href="cemat:tu@email.com">cemat@email.com</a></p>
+        <p><a href="https://github.com/catbrotha09">GitHub</a></p>
+
+        <form action="/" method="POST" class="form-contacto">
+          <div>
+            <input type="text" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div>
+            <input type="text" name="contacto" placeholder="Correo o teléfono" required />
+          </div>
+          <div>
+            <textarea name="texto" placeholder="Escribe tu texto o pensamiento aquí..." rows="4" required></textarea>
+          </div>
+          <button class="btn" type="submit">Guardar en el diario</button>
+        </form>
+
+        {% if exito %}
+          <div id="mensaje-gracias" style="margin-top: 15px; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 5px; transition: opacity 1s ease;">
+            ¡Gracias por tu tiempo!
+          </div>
+          <script>
+            setTimeout(function() {
+              var msg = document.getElementById('mensaje-gracias');
+              if (msg) {
+                msg.style.opacity = '0';
+                setTimeout(function() { msg.style.display = 'none'; }, 1000);
+              }
+            }, 3000);
+          </script>
+        {% endif %}
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Hecho con Python y Flask por César Campos</p>
+    </footer>
+
+  </body>
+</html>

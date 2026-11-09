@@ -1,0 +1,145 @@
+/* ============================================================
+   ESTILOS DEL PORTAFOLIO
+   Tip: cambia los colores de abajo y toda la página cambia.
+   ============================================================ */
+
+/* ✏️ Paso A: elige tus colores aquí */
+:root {
+  --fondo: #4e1313;
+  --tarjeta: #8f2a24;
+  --texto: #c6cdd6;
+  --acento: #787b7b;
+}
+
+/* Reglas generales: se aplican a toda la página */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--acento);
+}
+
+/* Cada sección ocupa un ancho cómodo y queda centrada */
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+h1 { font-size: 3rem; margin: 0; }
+h2 { color: var(--acento); }
+
+/* ---------- Menú ---------- */
+.navbar {
+  display: flex;                  /* pone logo y links en fila */
+  justify-content: space-between; /* uno a cada lado */
+  padding: 15px 30px;
+  background: var(--tarjeta);
+}
+
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.logo {
+  font-weight: bold;
+  margin-left: 0;
+}
+
+/* ---------- Inicio ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  min-height: 70vh;
+}
+
+.role {
+  font-size: 1.3rem;
+  color: var(--acento);
+}
+
+.avatar {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;   /* 50% = círculo */
+  object-fit: cover;
+}
+
+/* ---------- Botón ---------- */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--acento);
+  color: var(--fondo);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* ---------- Habilidades ---------- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;  /* si no caben, bajan a otra fila */
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  min-width: 200px;
+  background: var(--tarjeta);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* Proyecto que aparece al elegir una habilidad */
+.project {
+  margin-top: 30px;
+  padding: 20px;
+  background: var(--tarjeta);
+  border-radius: 12px;
+}
+
+/* ---------- Pie de página ---------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--tarjeta);
+}
+
+/* ---------- Celular ---------- */
+/* Si la pantalla mide 600px o menos, el inicio pasa a una sola columna */
+@media (max-width: 600px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+}
